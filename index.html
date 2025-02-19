@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        button, .twitter-share {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover, .twitter-share:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.2em;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dog Fun Facts</h1>
+        <button id="factButton">Get a Random Fact</button>
+        <div id="factDisplay" class="fact-display"></div>
+        <a id="twitterShare" class="twitter-share" href="#" target="_blank">Share on Twitter</a>
+    </div>
+    <script>
+        const funFacts = [
+            "Dogs have been domesticated for over 15,000 years.",
+            "A dog's sense of smell is 40 times better than that of humans.",
+            "Dogs can understand up to 165 words, signs, and signals.",
+            "The Basenji dog is known as the 'barkless dog' because it doesn't bark like other dogs.",
+            "Dogs have three eyelids, including one that helps keep their eyes moist and protected.",
+            "The Labrador Retriever has been the most popular dog breed in the U.S. for several years.",
+            "Dogs can hear sounds at frequencies as high as 65,000 Hz, while humans can only hear up to 20,000 Hz.",
+            "The world's oldest known breed is the Saluki, which dates back to ancient Egypt.",
+            "Dogs have unique nose prints, similar to human fingerprints.",
+            "The average dog is as smart as a two-year-old child."
+        ];
+
+        const factButton = document.getElementById('factButton');
+        const factDisplay = document.getElementById('factDisplay');
+        const twitterShare = document.getElementById('twitterShare');
+
+        factButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            const randomFact = funFacts[randomIndex];
+            
+            factDisplay.textContent = randomFact;
+            factDisplay.classList.add('show');
+
+            // Update Twitter share link
+            twitterShare.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(randomFact)}`;
+        });
+
+        // Optional: Add a fade-out effect before showing a new fact
+        factButton.addEventListener('click', () => {
+            factDisplay.classList.remove('show');
+            setTimeout(() => {
+                factDisplay.classList.add('show');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
